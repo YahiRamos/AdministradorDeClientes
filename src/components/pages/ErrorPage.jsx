@@ -5,8 +5,8 @@ export const ErrorPage = () => {
   return (
     <div className='space-y-10'>
         <h1 className='text-center text-6xl font-extrabold mt-20 text-violet-900'>Client Adinistrator</h1>
-        <p className='text-center'>Ha habido un error</p>
-        <p className='text-center'>{error.message}</p>
+        <p className='text-center'>There's an Error </p>
+        <p className='text-center'>{error.statusText || error.message}</p>
     </div>
   )
 }

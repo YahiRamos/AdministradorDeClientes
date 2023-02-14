@@ -1,5 +1,5 @@
 
-const RegisterForm = ({client}) => {
+const RegisterForm = ({clientData}) => {
   return (
     <>
     <div className="mb-4 rounded">
@@ -13,6 +13,7 @@ const RegisterForm = ({client}) => {
             className="mt-2 block w-full p-3 bg-gray-50"
             placeholder="Client Name"
             name="name"
+            defaultValue={clientData?.name}
         />
     </div>
     <div className="mb-4 rounded">
@@ -26,6 +27,7 @@ const RegisterForm = ({client}) => {
             className="mt-2 block w-full p-3 bg-gray-50"
             placeholder="Client company"
             name="company"
+            defaultValue={clientData?.company}
         />
     </div>
 
@@ -40,6 +42,7 @@ const RegisterForm = ({client}) => {
             className="mt-2 block w-full p-3 bg-gray-50"
             placeholder="Client Email"
             name="email"
+            defaultValue={clientData?.email}
         />
     </div>
 
@@ -54,6 +57,7 @@ const RegisterForm = ({client}) => {
             className="mt-2 block w-full p-3 bg-gray-50"
             placeholder="Client Phone"
             name="phone"
+            defaultValue={clientData?.phone}
         />
     </div>
 
@@ -69,6 +73,7 @@ const RegisterForm = ({client}) => {
             className="mt-2 block w-full p-3 bg-gray-50 h-40 align-self"
             placeholder="Client Notes"
             name="notes"
+            defaultValue={clientData?.notes}
         />
     </div>
 </>
