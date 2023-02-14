@@ -5,5 +5,16 @@ export const getClientsData = async () => {
 }
 
 export const addClient = async (client) => {
-  return console.log(client)
+  try {
+    const res = await fetch(import.meta.env.VITE_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(client)
+    })
+    await res.json()    
+  } catch (error) {
+    console.log(error)
+  }
 }

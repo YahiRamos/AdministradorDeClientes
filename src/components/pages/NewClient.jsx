@@ -28,7 +28,7 @@ export const action= async ({ request }) =>{
   //agregamos el cliente a la base de datos
   await addClient(data)
   //finalmente redireccionamos a la pagina de clientes
-  return {redirect:'/clients'}
+  return redirect('/')
 }
 //componente
 export const NewClient = () => {
@@ -43,7 +43,7 @@ export const NewClient = () => {
             Let's Sign Up a New Client!
         </h1>
         <div className='flex justify-between'>
-        <p className='mt-5 uppercase text-lg font-medium'>Fill the Fields to Register a new Client</p>
+        <p className='mt-5 uppercase text-lg font-medium'>Fill all the Fields to Register a new Client</p>
         <button onClick={()=>navigate(-1)}
           className='mt-4 h-7 rounded-md px-10 bg-violet-600 hover:bg-violet-800 hover:transition-opacity hover:text-white hover:duration-300 duration-500 font-semibold text-xl uppercase'>
           Back

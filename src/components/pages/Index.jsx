@@ -2,7 +2,6 @@ import { useLoaderData } from "react-router-dom"
 import { getClientsData } from "../../../api/clientsData";
 import Client from "../Client";
 
-
 export const loader=()=>{
     const clientsData=getClientsData()
     return clientsData
