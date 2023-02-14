@@ -1,28 +1,41 @@
-import { Form, useActionData, useNavigate } from 'react-router-dom'
+import { Form, useActionData, useNavigate,redirect } from 'react-router-dom'
 import Error from '../Error'
 import RegisterForm from '../RegisterForm'
+import { addClient } from '../../../api/clientsData'
 
+//action es una funcion que se ejecuta antes de renderizar la vista
 export const action= async ({ request }) =>{
   let formData=await request.formData()
   //guardamos los valores de los campos del form en la variable data
   let data=Object.fromEntries(formData)
-
-  //validamos
+  //guardamos el email ingresado en el formulario en una variable
+  let email=formData.get('email')
+  //guardamos los errores en el array errors
   let errors=[]
+  //validamos que todos los campos esten llenos
   if(Object.values(data).includes('')){
     errors.push('All the Fields are Required')
+  }
+  //validamos el email
+  let regexEmail=new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])")
+  if(!regexEmail.test(email)){
+    errors.push('The Email is not Valid')
   }
   //retornar los errores
   if(Object.keys(errors).length){
     return errors
   }
-  //retornamos los datos
- // return data
+  //agregamos el cliente a la base de datos
+  await addClient(data)
+  //finalmente redireccionamos a la pagina de clientes
+  return {redirect:'/clients'}
 }
-
+//componente
 export const NewClient = () => {
   let navigate=useNavigate()
+  //importamos los errores si es que hay
   let errors=useActionData()
+ 
   
   return (
     <div>
@@ -39,6 +52,7 @@ export const NewClient = () => {
         
         <Form
           method='post'
+          noValidate
         >
           <div className='bg-violet-300 shadow rounded-md md:w-3/4 mx-auto px-5 py-5 font-Rubik font-semibold mt-10'>
             {errors?.length && errors.map((error,index)=>{
